@@ -35,6 +35,11 @@ sub get_source {
 
     $file =~ s!^blib/!!;
 
+    # Prepend sub-directory name to file name
+    if (exists $ENV{COVERALLS_FLAG_NAME}) {
+        $file = $ENV{COVERALLS_FLAG_NAME} . '/' . $file;
+    }
+
     return +{
         name => $file,
         source => $source,
