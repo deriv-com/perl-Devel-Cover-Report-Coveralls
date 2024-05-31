@@ -35,6 +35,11 @@ sub get_source {
 
     $file =~ s!^blib/!!;
 
+    # Prepend sub-directory name to file name
+    if (exists $ENV{CHANGED_DIR}) {
+        $file = $ENV{CHANGED_DIR} . '/' . $file;
+    }
+
     return +{
         name => $file,
         source => $source,
