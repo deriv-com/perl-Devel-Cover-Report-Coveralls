@@ -24,7 +24,7 @@ jobs:
       image: perl:${{ matrix.perl-version }}
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 #v3
       - name: Configure git
         run: git config --system --add safe.directory '*'
       - name: perl -V
@@ -39,7 +39,6 @@ jobs:
       - name: Run Cover
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: |
             ./Build install
             HARNESS_PERL_SWITCHES=-MDevel::Cover DEVEL_COVER_SELF=1 ./Build test
