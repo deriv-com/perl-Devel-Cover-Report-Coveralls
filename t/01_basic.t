@@ -147,7 +147,7 @@ subtest 'get_source from sub-directory' => sub {
     is $source->{name}, $file_path, 'Check path when the source file is not in a sub-directory';
 
     local $ENV{CHANGED_DIR} = 'project';
-    my $source = Devel::Cover::Report::Coveralls::get_source($file_path, sub { $_[0] == 6 ? 0 : undef } );
+    $source = Devel::Cover::Report::Coveralls::get_source($file_path, sub { $_[0] == 6 ? 0 : undef } );
     is $source->{name}, "project/$file_path", 'Check path when the source file is in a sub-directory';
 };
 
